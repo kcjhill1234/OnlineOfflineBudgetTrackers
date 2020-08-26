@@ -12,7 +12,9 @@ const FILES_TO_CACHE = [
     "/node_modules/",
     "/routes/api.js",
     "/package-lock.json",
-    "/package.json"
+    "/package.json",
+    "/server.js",
+    "/public/bootstrap.min.css"
 ];
 
 let CACHE_NAME = "records"; 
