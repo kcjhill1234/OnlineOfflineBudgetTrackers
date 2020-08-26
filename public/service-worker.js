@@ -27,7 +27,8 @@ self.addEventListener("install", event => {
             .then(cache => {
                 return cache.addAll(FILES_TO_CACHE);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err)),
+            console.log(err)
     );
 });
 
