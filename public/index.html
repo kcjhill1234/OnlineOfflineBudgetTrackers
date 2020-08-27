@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,11 @@
   <link rel="shortcut icon" href="icons/icon-192x192.png" type="image/x-icon">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/public/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
 
   <title>Budget Tracker</title>
 </head>
+
 <body>
   <div class="wrapper">
     <div class="total">
@@ -34,11 +35,11 @@
           <th>Amount</th>
         </thead>
         <tbody id="tbody">
-          
+
         </tbody>
       </table>
     </div>
-    
+
     <canvas id="myChart"></canvas>
   </div>
 
@@ -46,12 +47,25 @@
   <script src="index.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("service-worker.js").then(reg => {
-            console.log("We found your service worker file! in html", reg);
-          });
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").then(reg => {
+          console.log("We found your service worker file! in html", reg);
         });
-      }
+
+        navigator.serviceWorker.ready.then(function (registration) {
+          console.log('Service Worker Ready')
+          return registration.sync.register('sendSavedRequests')
+        }).then(function () {
+          console.log('sync event registered')
+        }).catch(function () {
+          // system was unable to register for a sync,
+          // this could be an OS-level restriction
+          console.log('sync registration failed')
+        });
+
+      });
+    }
   </script>
 </body>
+
 </html>
